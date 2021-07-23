@@ -1,0 +1,28 @@
+{% extends 'app_html/base.html' %}
+{% block title %}SweetDelete{% endblock %}
+{% block content %}
+<div class="container pt-4">
+	<div class="card col-md-8 max-auto shadow-lg">
+		<div class="card-body">
+			<h3>Delete this Item Sweet</h3>
+			<form method="post">
+				{% csrf_token %}
+				<h4>Are you sure you want to delete {{t.Iname}}?</h4>
+				<div class="row">
+					<div class="col ">
+						<input type="submit" value="Yes Delete" class="btn btn-outline-danger form-control my-2">
+			         </div>
+			         <div class="col">
+			         	<a href="{% url 'il' %}" class="btn btn-outline-warning form-control my-2">Cancel</a>
+			         	
+			         </div>
+			    </div>
+				
+			</form>
+				
+		</div>
+		
+	</div>
+	
+</div>
+{% endblock %}

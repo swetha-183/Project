@@ -1,0 +1,45 @@
+
+{% extends 'app_html/base.html' %}
+{% load static %}
+{% block title %}MilkShakeview{% endblock %}
+{% block content %}
+  <div class="container pt-5">
+    <div class="card col-md-8 mx-auto shadow-lg mx-2 my-2">
+      <div class="card-body">
+        <h3 style="color:green;text-align:center;font-family:serif;"><i>MilkShake View</i></h3>
+        <div class="row">
+          <div class="col col-sm">
+            <img src="{{ t.simage.url }}">
+            
+          </div>
+
+          <div class="col col-md">
+        <table class="table table-borderless-striped table-hover">
+          <tr>
+          <th>Milkshake Name</th>
+          <td>{{t.sname}}</td>
+        </tr>
+        <tr>
+          <th>Milkshake Price</th>
+          <td>{{t.sprice}}</td>
+        </tr>
+        <tr>
+          <th>Milkshake Availiblity</th>
+          <td>{% if t.savailability == 'AV' %}
+                 <span class="badge badge-warning">Available</span>
+                 {% else %}
+                 <span class="badge badge-danger">Not Available</span>
+                 {% endif %}
+          </td>
+        </tr>
+        </table>
+        <a href="{% url 'milsh' %}" class="btn btn-outline-dark text-warning form-control ">Back to list</a>
+        </div>
+      </div>
+        
+      </div>
+      
+    </div>
+    
+  </div>
+{% endblock %}

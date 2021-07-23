@@ -1,0 +1,56 @@
+{% extends 'app_html/base.html' %}
+{% load static %}
+{% block title %}Home Page{% endblock %}
+{% block content %}
+ <style>
+  
+  </style>
+</head>
+<body>
+<div class="container-fluid pt-4">
+  {% if user.role == 2 or user.role == 3 or  user.is_superuser %}
+<div id="demo" class="carousel slide" data-ride="carousel">
+
+  <ul class="carousel-indicators">
+    <li data-target="#demo" data-slide-to="0" class="active"></li>
+    <li data-target="#demo" data-slide-to="1"></li>
+    <li data-target="#demo" data-slide-to="2"></li>
+  </ul>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="https://source.unsplash.com/1600x800/?milkshake" alt="Milkshake" height="500px"  class="d-block w-100">
+    </div>
+    <div class="carousel-item">
+      <img src="https://source.unsplash.com/1600x800/?laddu" alt="sweet" height="500px" class="d-block w-100">
+    </div>
+    <div class="carousel-item">
+      <img src="https://source.unsplash.com/1600x800/?donut" alt="Snack"  height="500px" class="d-block w-100"> 
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#demo" data-slide="prev">
+    <span class="carousel-control-prev-icon bg-success"></span>
+  </a>
+  <a class="carousel-control-next" href="#demo" data-slide="next">
+    <span class="carousel-control-next-icon bg-success"></span>
+  </a>
+</div>
+
+{% elif user.is_superuser %}
+<div class="jumbotron col-md-6 mx-auto shadow-lg pt-4">
+  <h3>You are admin</h3>
+  {% elif user.role == 3 %}
+  <div class="jumbotron col-md-6 mx-auto shadow-lg">
+    <h3>You are User</h3>
+    
+  </div>
+</div>
+    {% else %}
+  <div class="jumbotron col-md-6  pt-20 mt-20 mx-auto shadow-lg bg-secondary">
+    <h3>You are in Guest account</h3>
+  </div>
+  {% endif %}
+  </div>
+
+
+
+{% endblock %}

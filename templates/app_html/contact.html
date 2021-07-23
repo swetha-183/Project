@@ -1,0 +1,35 @@
+{% extends 'app_html/base.html' %}
+{% block title %}contact{% endblock %}
+
+{% block content %}
+
+
+<div class="container pt-4">
+{% if messages %}
+{% for m in messages %}
+
+	<div class="alert alert-{{m.tags}} alert-dismissible">
+		<button type="button" class="close" data-dismiss="alert">&times;</button>
+		{{m}}
+	</div>
+{% endfor %}
+{% endif %}
+      <div class="row">
+      	<div class="card col-md-6  mx-auto shadow-lg ">
+		<h3 style="text-align:center;color:brown;font-size:50px"><i>Contact Us</i></h3>
+		<form method = "post">
+			{% csrf_token %}
+			{% for n in o %}
+			<div>{{n}}</div>
+			{% endfor %}
+			<div class="row">
+				<div class="col">
+					<input type="submit" value="Submit" class="btn form-control md-4 btn-outline-dark text-success">
+				</div>
+			</div>
+			
+		</form>
+	</div>
+	</div>
+ </div>
+{% endblock %}

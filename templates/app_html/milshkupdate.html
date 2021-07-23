@@ -1,0 +1,35 @@
+{% extends 'app_html/base.html' %}
+{% block title %}MilkShakeUpdate{% endblock %}
+{% block content %}
+<div class="container pt-4">
+	<div class="row">
+		<div class="card col-md-6 mx-auto shadow-lg">
+			<div class="card-body">
+				<h3>MilkShake Update</h3>
+				<form method="post" enctype="multipart/form-data">
+					{% csrf_token %}
+					{% for k in t %}
+					<div>{{k}}</div>
+					{% endfor %}
+					<div class="row">
+						<div class="col">
+						<input type="submit" value="Update " class="btn btn-outline-warning form-control mx-2 my-2" >
+						</div>
+						<div class="col">
+							<a href="{% url 'mil' %}" class="btn btn-outline-info form-control mx-2 my-2">Back To List</a>
+						</div>
+						
+					</div>
+					
+				</form>
+					
+				
+			</div>
+
+			
+		</div>
+		
+	</div>
+	
+</div>
+{% endblock %}

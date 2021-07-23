@@ -1,0 +1,40 @@
+{% extends 'app_html/base.html' %}
+{% load static %}
+{% block title %}SnackPage{% endblock %}
+{% block content %}
+<div class="container pt-4">
+	{% if user.role == 2 or user.role == 3 or  user.is_superuser %}
+	<h3 style="color:magenta;text-align:center;font-size:35px;">Snack List</h3>
+	<div class="row">
+		{% for u in t %}
+		<div class="col col-md-3 mx-4 my-4">
+			<div class="card shadow-lg">
+				
+				<img height="200px" src="{{u.simage.url}}">
+				<h3 style="text-align:center;color:orange;">{{u.sname}}</h3>
+				<h5 style="color:brown;text-align:center;">Price:{{u.sprice}}/kg</h5>
+				<h6 style="text-align:center">{% if u.savailability == 'AV' %}
+					<span  class="badge badge-success" >Available</span>
+					{% else %}
+					<span  class="badge badge-danger">Currently Not Available</span>
+                     {% endif %}
+					
+				</h6>
+				
+						<a href="{% url 'addto'%}" class="btn btn-info mx-5 my-2">Buy Now</a>
+					
+			</div>
+			
+		</div>
+		{% endfor %}
+		
+	</div>
+
+{% else %}
+  <div class="card col-md-6 mx-auto shadow-lg">
+    <h3>You are in Guest account</h3>
+  </div>
+  {% endif %}
+	
+</div>
+{% endblock%}

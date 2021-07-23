@@ -1,0 +1,48 @@
+{% extends 'app_html/base.html' %}
+{% load static %}
+{% block title %}SweetView{% endblock %}
+{% block content %}
+<div class="container pt-4">
+	<div  class="card col-md-8 mx-auto shadow-lg">
+		<div class="card-body">
+			<h3 style="color:blue;text-align:center"><i>Sweet View</i></h3>
+			<div class="row">
+				<div class="col col-sm">
+                <img src="{{h.Iimage.url}}">
+				</div>
+				<div class="col col-md">
+					<table class="table table-borderless-striped table-hover">
+				<tr>
+					<th>Sweet Name</th>
+					<td>{{h.Iname}}</td>
+				</tr>
+				<tr>
+					<th>Sweet Price</th>
+					<td>{{h.Price}}</td>
+				</tr>
+				<tr>
+					<th>Sweet Availibility</th>
+					<td>{% if h.Itavilability == 'AV' %}
+                     <span>Available</span>
+                     {% else %}
+                		<span class="badge badge-primary">Not Available</span>
+                		{% endif %}
+					</td>
+
+				</tr>
+
+
+				
+			</table>
+              <a href="{% url 'il' %}" class="btn btn-outline-secondary form-control">Back To List</a>
+					
+				</div>
+			</div>
+			
+			
+		</div>
+		
+	</div>
+	
+</div>
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends 'app_html/base.html' %}
+{% block title %}SweetList{% endblock %}
+{% block content %}
+<div class="container mt-4">
+{% if messages %}
+{% for m in messages %}
+	<div class="alert alert-{{m.tags}} alert-dismissible">
+		<button type="button" class="close" data-dismiss="alert">&times;</button>
+		{{m}}
+		</div>
+{% endfor %}
+{% endif %}
+  
+	<div class="row">
+		<div class="card col-md-4 mx-2 shadow-lg h-100">
+			<div class="card-body">
+				<h3 style="color:red;text-align: center"><i>Add Sweet</i></h3>
+				<form method="post" enctype="multipart/form-data">
+					{% csrf_token %}
+					{% for n in r %}
+					<div>{{n}}</div>
+					<!-- {% if forloop.counter == 1 %}
+					<select class="form-control ">
+						{% for j in a %}
+						<option value="{{j.id}}">{{j}}</option>
+						{% endfor %}
+					</select>
+					{% elif forloop.counter >= 1 %}
+					<div>{{n}}</div>
+					{% endif %} -->
+					{% endfor %}
+					<div class="row">
+						<div class="col">
+							<input type="reset" value="Reset" class="btn btn-outline-primary form-control mx-2 my-2">
+						</div>
+						<div class="col">
+							<input type="submit" value="Create" class="btn btn-outline-success form-control mx-2 my-2">
+							
+						</div>
+						
+					</div>
+				</form>
+					
+			</div>
+			
+		</div>
+		<div class="card col-md shadow-lg">
+			<div class="card-body">
+				<h3 style="color:red;text-align:center"><i>List Of Sweets</i></h3>
+                <table class="table table-borderless-striped table-hover">
+                	<tr class="bg-info text-light">
+                		<th>S.no</th>
+                		<th>Name</th>
+                		<th>Price</th>
+                		<th>Availability</th>
+                		<th>Operations</th>
+                	</tr>
+                	{% for k in a %}
+                	<tr>
+                		<td>{{forloop.counter}}</td>
+                		<td><a href="{% url 'swvw' k.id %}" style="text-decoration: none;"  class="text-secoondary">{{k.Iname}}</td>
+                		<td>{{k.Price}}</td>
+                		<td>{% if k.Itavilability == 'AV' %}
+                			<span class="badge badge-danger">Available</span>
+                			{% else %}
+                			<span class="badge badge-primary">Not Available</span>
+                			{% endif %}
+                		</td>
+                        <td><a href="{% url 'swup' k.id %}" class="btn btn-outline-success">Update</a>
+                        <a href="{% url 'swdl' k.id %}" class="btn btn-outline-warning">Delete</a>
+                        </td>
+                	</tr>
+                	{% endfor %}
+                	
+                </table>
+				
+			</div>
+			
+		</div>
+	</div>
+	
+</div>
+{% endblock %}

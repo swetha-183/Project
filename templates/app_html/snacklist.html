@@ -1,0 +1,88 @@
+{% extends 'app_html/base.html' %}
+{% block title%}SnackList{% endblock %}
+{% block content %}
+<div class="container pt-4">
+	{% if messages %}
+{% for m in messages %}
+	<div class="alert alert-{{m.tags}} alert-dismissible">
+		<button type="button" class="close" data-dismiss="alert">&times;</button>
+		{{m}}
+		</div>
+{% endfor %}
+{% endif %}
+	<div class="row">
+		<div class="card col-md-3 my-2 mx-2 shadow-lg h-100">
+			<div class="card-body">
+				<div class="col">
+					<h3 style="color:brown;text-align:center;"><i>Add Snacks</i></h3>
+					<form method="post" enctype="multipart/form-data">
+						{% csrf_token %}
+						{% for j in h %}
+						 <div>{{j}}</div>
+						<!-- {% if forloop.counter == 1 %}
+					<select class="form-control ">
+						{% for t in k %}
+						<option value="{{t.id}}">{{t}}</option>
+						{% endfor %}
+					</select>
+					{% elif forloop.counter >= 2 %}
+					<div>{{j}}</div> 
+					{% endif %} -->
+						{% endfor %}
+						<div class="row">
+						<div class="col">
+							<input type="submit" value="create" class="btn btn-outline-primary my-2 form-control">
+						</div>
+						<div class="col">
+							<input type="reset" value="Reset" class="btn btn-outline-secondary my-2 form-control">
+						</div>
+					</div>
+					</form>
+				</div>
+				
+			</div>
+			
+		</div>
+		<div class="card col-md shadow-lg">
+			<div class="card-body">
+				<div class="col">
+					<h3 style="color:brown;text-align:center;"><i>Snacks List</i></h3>
+					<table class="table table-borderless-striped table-hover">
+						<tr class="bg-dark text-light">
+							<th>Sno</th>
+							<th>kName</th>
+							<th>Price</th>
+							<th>Availability</th>
+							<th>Operations </th>
+						</tr>
+						{% for j in k %}
+						 <tr>
+						 	<th>{{forloop.counter}}</th>
+						 	<th><a href="{% url 'snvew' j.id %}" style="text-decoration: none;" class="text-secondary">{{j.sname}}</a></th>
+						 	<th>{{j.sprice}}</th>
+						 	<th>{% if j.savailability == 'AV' %}
+						 		<span class="badge badge-success">Available</span>
+						 		{% else %}
+						 		<span class="badge badge-danger">Currently Not Available</span>
+                                {% endif %}
+						 	</th>
+						 	<td>
+						 		<a href="{% url 'supd' j.id %}" class="btn btn-outline-warning  my-2">Update</a>
+						 		<a href="{% url 'sdlt' j.id %}" class="btn btn-outline-danger  my-2">Delete</a>
+						 	</td>
+						 </tr>
+						 {% endfor %}
+                        
+					</table>
+					
+				</div>
+				
+			</div>
+			
+		</div>
+		
+	</div>
+	
+	
+</div>
+{% endblock %}

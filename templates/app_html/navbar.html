@@ -1,0 +1,132 @@
+{% load static %}
+<nav class="navbar navbar-expand-sm bg-danger navbar-light">
+ 
+  <a class="navbar-brand" href="{% url 'hm' %}"><span style="color:yellow;font-family: serif;font-size:50px"><i>Yummy Stack</i></span>
+    <img src="{% static 'images/pic1.jpg' %}" alt="snack" style="width:70px;">
+  </a>
+
+  <ul class="navbar-nav">
+    {% if not user.is_authenticated %}
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'hm' %}">Home</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'ab' %}">About</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'co' %}">Contact</a>
+    </li>
+    <ul class="navbar-nav ml-auto" style="margin-right:20px">
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'reg' %}">Register</a>
+   </li>
+   {% elif user.role == 2 %}
+    <!-- <li class="nav-item">
+      <a class="nav-link" href="#">Itemslist</a>
+    </li> -->
+    <li class="nav-item">
+    <a class="nav-link" href="{% url 'hm' %}">Home</a>
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+        Admin ItemsList
+      </a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="{% url 'il' %}">Sweets</a>
+        <a class="dropdown-item" href="{% url 'snac' %}">Snacks</a>
+        <a class="dropdown-item" href="{% url 'milsh' %}">Milkshake</a>
+      </div>
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+        ItemsList
+      </a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="{% url 'sp' %}">Sweets</a>
+        <a class="dropdown-item" href="{% url 'snli' %}">Snacks</a>
+         <a class="dropdown-item" href="{% url 'mik' %}">MilkShake</a> 
+    
+    </li>
+    {% elif user.is_superuser %}
+    <li class="nav-item">
+    <a class="nav-link" href="{% url 'gvpe' %}">Permissions</a>
+  </li>
+   <li class="nav-item">
+    <a class="nav-link" href="{% url 'hm' %}">Home</a>
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+        Admin ItemsList
+      </a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="{% url 'il' %}">Sweets</a>
+        <a class="dropdown-item" href="{% url 'snac' %}">Snacks</a>
+        <a class="dropdown-item" href="{% url 'milsh' %}">Milkshake</a>
+      </div>
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+        ItemsList
+      </a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="{% url 'sp' %}">Sweets</a>
+        <a class="dropdown-item" href="{% url 'snli' %}">Snacks</a>
+         <a class="dropdown-item" href="{% url 'mik' %}">MilkShake</a> 
+    
+    </li>
+    {% elif user.role == 3 %}
+    <li class="nav-item">
+    <a class="nav-link" href="{% url 'hm' %}">Home</a>
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> <!--ItemList-->
+        List
+      </a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="{% url 'sp' %}">Sweets</a>
+        <a class="dropdown-item" href="{% url 'snli' %}">Snacks</a>
+         <a class="dropdown-item" href="{% url 'mik' %}">MilkShake</a> 
+    
+    </li>
+
+    {% else %}
+    
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'hm' %}">Home</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'rlrq' %}">Role Request</a>
+  </li>
+  <!-- <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+        ItemsList
+      </a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="{% url 'sp' %}">Sweets</a>
+        <a class="dropdown-item" href="{% url 'snli' %}">Snacks</a>
+         <a class="dropdown-item" href="{% url 'mik' %}">MilkShake</a> 
+   </li> -->
+        
+      </div>
+    {% endif %}
+
+</ul>
+
+
+
+  
+    
+  </ul>
+  <ul class="navbar-nav ml-auto " style="margin-right:120px" >
+    {% if not user.is_authenticated %}
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'log' %}">Login</a>
+    </li> 
+    {% else %}
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'logo' %}">Logout</a>
+    </li> 
+    {% endif %}
+    
+  </ul>
+</nav>

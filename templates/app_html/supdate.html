@@ -1,0 +1,30 @@
+{% extends 'app_html/base.html' %}
+{% block title %}SnackUpdate{% endblock %}
+{% block content %}
+<div class="container pt-4">
+	<div class="card col-md-6 mx-auto shadow-lg">
+		<div class="card-body">
+			<h3>Snack Updation</h3>
+			<form method="post" enctype="multipart/form-data">
+				{% csrf_token %}
+				{% for m in j %}
+				<div>{{m}}</div>
+				{% endfor %}
+				<div class="row">
+					<div class="col">
+				        <input type="submit" value="update" class="btn btn-outline-danger mx-2 my-2 form-control">
+			        </div>
+			        <div class="col">
+				        <a href="{% url 'snac' %}" class="btn btn-outline-primary form-control my-2 mx-2">Back To List</a>
+			        </div>
+			    </div>
+
+				
+			</form>
+			
+		</div>
+		
+	</div>
+	
+</div>
+{% endblock %}

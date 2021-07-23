@@ -1,0 +1,30 @@
+{% extends 'app_html/base.html' %}
+{% block title %}Permission Update
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4 ">
+	<div class="card col-md-6 mx-auto shadow-lg">
+		<div class="card-body">
+			<h3>Update Permissions</h3>
+			<form method="post">
+				{% csrf_token %}
+				<!-- <input type="text" name="uname" value="{{c.uname}}" class="form-control my-2" readonly> -->
+				{% for j in c %}
+				 <div>{{j}}</div>
+				{% endfor %}
+				<div class="row">
+					<div class="col">
+						<a href="{% url 'gvpe' %}" class="btn btn-outline-danger form-control mx-2 my-2">Back To List</a>
+						
+					</div>
+					<div class="col">
+						<input type="submit" value="Grant" class="btn btn-outline-success form-control mx-2 my-2" >
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	
+</div>
+{% endblock %}

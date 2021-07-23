@@ -1,0 +1,86 @@
+{% extends 'app_html/base.html' %}
+{% block title %}MilkShake{% endblock %}
+{% block content %}
+<div class="container pt-4">
+	{% if messages %}
+{% for m in messages %}
+	<div class="alert alert-{{m.tags}} alert-dismissible">
+		<button type="button" class="close" data-dismiss="alert">&times;</button>
+		{{m}}
+		</div>
+{% endfor %}
+{% endif %}
+	<div class="row">
+		<div class="card col-md-4 shadow-lg mx-2 my-2 h-100">
+        <div class="col">
+        	<h3 style="color:blue;text-align:center;"><i>Add MilkShake</i></h3>
+        <form method="post" enctype="multipart/form-data">
+        	{% csrf_token %}
+        	{% for l in g %}
+        	<div>{{l}}</div>
+        	<!-- {% if forloop.counter == 1 %}
+					<select class="form-control ">
+						{% for i in q %}
+						<option value="{{i.id}}">{{i}}</option>
+						{% endfor %}
+					</select>
+					{% endif %} -->
+        	{% endfor %}
+        	<div class="row">
+        		<div class="col col-md-6">
+        			<input type="submit" value="Create" class="btn btn-outline-info form-control my-2 mx-2">
+        			
+        		</div>
+        		<div class="col">
+        			<input type="reset" value="reset" class="btn btn-outline-secondary form-control my-2 mx-2">
+        			
+        		</div>
+        		
+        	</div>
+        </form>
+        	
+        </div>
+			
+		</div>
+		<div class="card col-md shadow-lg mx-2 my-2">
+			<h3 style="color:blue;text-align:center;"><i>MilkShake List</i></h3>
+			<table class="table table-borderless-striped table-hover">
+				<tr class="bg-warning text-danger">
+					<th>Sno</th>
+					<th>Name</th>
+					<th>Price</th>
+					<th>Availability</th>
+					<th>Operations</th>
+				</tr>
+				{% for k in q %}
+				<tr>
+					<td>{{forloop.counter}}</td>
+					<td><a href="{% url 'milview' k.id %}" href="{% url 'swvw' k.id %}" style="text-decoration: none;"  class="text-secondary">{{k.sname}}</a></td>
+					<td>{{k.sprice}}</td>
+					<td>{% if k.savailability == 'AV' %}
+                         <span class="badge badge-success">Available</span>
+                         {% else %}
+                         <span class="badge badge-danger">Currently Not Available</span>
+                         {% endif %}
+					</td>
+					<td>
+						<div class="row">
+							<div class="col">
+								<a href="{% url 'miu' k.id %}" class="btn btn-outline-primary">Update</a>
+							</div>
+							<div class="col">
+								<a href="{% url 'mdlt' k.id %}" class="btn btn-outline-danger">Delete</a>
+							</div>
+
+						</div>
+
+					</td>
+				</tr>
+				{% endfor %}
+				
+			</table>
+		</div>
+	</div>
+	
+</div>
+{% endblock %}

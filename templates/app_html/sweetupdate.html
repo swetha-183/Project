@@ -1,0 +1,29 @@
+{% extends 'app_html/base.html' %}
+{% block title %}Sweet Update{% endblock %}
+{% block content %}
+<div class="container pt-4">
+	<div class="card col-md-6 mx-auto shadow-lg">
+		<div class="card-body">
+			<h3 style="color:red;text-align:center">Sweet updation</h3>
+			<form method="post" enctype="multipart/form-data">
+				{% csrf_token %}
+                {% for j in s%}
+                    {{j}}
+                {% endfor %}
+                <div class="row">
+                	<div class="col">
+                		<a href="{% url 'il' %}" class="btn btn-outline-primary form-control my-2 mx-2">Back to List</a>
+                	</div>
+                	<div class="col">
+                		<input type="submit" value="update" class="btn btn-outline-secondary form-control my-2 mx-2">
+                	</div>
+                	
+                </div>
+			</form>
+			
+		</div>
+		
+	</div>
+	
+</div>
+{% endblock %}

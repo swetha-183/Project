@@ -1,0 +1,30 @@
+{% extends 'app_html/base.html' %}
+{% load static %}
+{% block title %}Buy Now{% endblock %}
+{% block content %}
+<div class="container-fluid pt-4">
+	{% if messages %}
+{% for m in messages %}
+	<div class="alert alert-{{m.tags}} alert-dismissible">
+		<button type="button" class="close" data-dismiss="alert">&times;</button>
+		{{m}}
+		</div>
+{% endfor %}
+{% endif %}
+<div class="card shadow-lg col-md-6 mx-auto  my-2">
+	<div class="card-body">
+		<h3 style="text-align:center;color:brown;"><i>Mention Your Details</i></h3>
+		<form method="post">
+			{% csrf_token %}
+		{% for j in k %}
+		<div>{{j}}</div>
+		{% endfor %}
+		<div class="row">
+			<div class="col col-md-4 mx-auto">
+		<input type="submit" class="btn btn-outline-info ">
+	   </div>
+	</form>
+	</div>
+</div>
+</div>
+{% endblock %}
